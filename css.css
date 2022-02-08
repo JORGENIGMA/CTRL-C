@@ -1,0 +1,71 @@
+@font-face { 
+	font-family: "Digital"; 
+	/*src: url("jorgenigma.ttf");*/ 
+	src: url("Lora-Bold.ttf");
+}
+
+body {
+	margin:0;
+	padding:0;
+	background-color: black !important;
+}
+
+#background {
+	background-image:url("background.jpg");
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	background-size:cover;
+}
+
+#overlay {
+	width:100%;
+	height:100%;
+	background-color:rgba(0, 0, 0, 0.3);
+}
+
+#time {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+
+	font-family: Digital;
+	cursor:default;
+	color: rgb(255,255,255);
+	text-align: center;
+}
+
+#gradient {
+	background: -webkit-linear-gradient( rgb(247, 211, 6), rgb(236, 37, 10) );
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}
+
+#clock {
+	font-size:20em;
+	}
+
+#weekday {
+	font-size: 5em;
+	}
+
+#date {
+	font-size: 4em;
+}
+
+#clases {
+	font-size: 3em;
+}
+
+#restante {
+	font-size: 2em;
+}
+
+#siguiente {
+	font-size: 1.5em;
+}
