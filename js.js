@@ -40,7 +40,7 @@ function load() {
 
   setInterval(update, 1000 / 30);
 }
-function Siguente() {
+function SiguienteClase() {
   sigClase = currentClase;
   sigProfe = currentProfesor;
 }
@@ -59,38 +59,38 @@ var horasMaterias = [1.5, 2.5, 4, 5.5, 7, 8.5, 10];
 function Materias(mat) {
   switch (mat) {
     case 0:
-      currentClase = "Horario libre";
-      currentProfesor = "  ";
+      currentClase = "  ";
+      currentProfesor = "ninguno";
       currentGroup = "  ";
       break;
     case 1:
-      currentClase = "Ingenier�a econ�mica";
+      currentClase = "Ingeniería económica";
       currentProfesor = "Feregrino Leyva Blanca Marina";
       currentGroup = "5AV4";
       break;
     case 2:
-      currentClase = "Teor�a de control I";
+      currentClase = "Teoría de control I";
       currentProfesor = "Cantera Cantera Luis Alberto";
       currentGroup = "5AV4";
       break;
     case 3:
-      currentClase = "Maquinas el�ctricas I";
-      currentProfesor = "Franco Montes Jos� Uriel";
+      currentClase = "Maquinas eléctricas I";
+      currentProfesor = "Franco Montes José Uriel";
       currentGroup = "5AV4";
       break;
     case 4:
-      currentClase = "Preparaci�n y transporte de materiales";
-      currentProfesor = "P�rez V�zquez Marisol";
+      currentClase = "Preparación y transporte de materiales";
+      currentProfesor = "Pérez Vázquez Marisol";
       currentGroup = "5AV4";
       break;
     case 5:
-      currentClase = "Electr�nica operacional";
-      currentProfesor = "Godoy Rodr�guez Luis";
+      currentClase = "Electrónica operacional";
+      currentProfesor = "Godoy Rodríguez Luis";
       currentGroup = "5AV4";
       break;
     case 6:
-      currentClase = "Elementos primarios de medici�n";
-      currentProfesor = "Tolentino Eslava Ren�";
+      currentClase = "Elementos primarios de medición";
+      currentProfesor = "Tolentino Eslava René";
       currentGroup = "5AV4";
       break;
     case 7:
@@ -120,7 +120,7 @@ function update() {
     currenthoramin < horaf12(horasMaterias[1])
   ) {
     Materias(Horario[currentDay][1]);
-    Siguente();
+    SiguienteClase();
     Materias(Horario[currentDay][0]);
     remtime = horaf12(horasMaterias[1]) - currenthoramin;
   }
@@ -129,7 +129,7 @@ function update() {
     currenthoramin < horaf12(horasMaterias[2])
   ) {
     Materias(Horario[currentDay][1]);
-    Siguente();
+    SiguienteClase();
     Materias(Horario[currentDay][0]);
     remtime = horaf12(horasMaterias[2]) - currenthoramin;
   }
@@ -138,7 +138,7 @@ function update() {
     currenthoramin < horaf12(horasMaterias[3])
   ) {
     Materias(Horario[currentDay][2]);
-    Siguente();
+    SiguienteClase();
     Materias(Horario[currentDay][1]);
     remtime = horaf12(horasMaterias[3]) - currenthoramin;
   }
@@ -147,7 +147,7 @@ function update() {
     currenthoramin < horaf12(horasMaterias[4])
   ) {
     Materias(Horario[currentDay][3]);
-    Siguente();
+    SiguienteClase();
     Materias(Horario[currentDay][2]);
     remtime = horaf12(horasMaterias[4]) - currenthoramin;
   }
@@ -156,7 +156,7 @@ function update() {
     currenthoramin < horaf12(horasMaterias[5])
   ) {
     Materias(Horario[currentDay][4]);
-    Siguente();
+    SiguienteClase();
     Materias(Horario[currentDay][3]);
     remtime = horaf12(horasMaterias[5]) - currenthoramin;
   }
@@ -164,6 +164,8 @@ function update() {
     currenthoramin >= horaf12(horasMaterias[5]) &&
     currenthoramin < horaf12(horasMaterias[6])
   ) {
+    Materias(Horario[currentDay][5]);
+    SiguienteClase();
     Materias(Horario[currentDay][4]);
     remtime = horaf12(horasMaterias[6]) - currenthoramin;
   }
@@ -196,9 +198,9 @@ function update() {
   //	clases.innerHTML = :
   if (currentDay < 6 && currentDay > 0) {
     if (
-    currenthoramin >= horaf12(horasMaterias[1]) &&
-    currenthoramin <= horaf12(horasMaterias[6])
-  ) {
+      currenthoramin >= horaf12(horasMaterias[1]) &&
+      currenthoramin <= horaf12(horasMaterias[6])
+    ) {
       clases.innerHTML =
         currentClase + " - " + currentGroup + "<br>" + currentProfesor;
       restante.innerHTML = "Tiempo restante: " + remtime + ":";
@@ -209,22 +211,21 @@ function update() {
       } else if (60 - currentSeconds <= 60) {
         restante.innerHTML = restante.innerHTML + (60 - currentSeconds);
       }
-      if (currentClase == "Horario libre"){
-        clases.innerHTML =
-        currentClase;
+      if (sigProfe == "ninguno") {
+        siguiente.innerHTML = "<br> Siguiente clase: <br> Horario libre";
       }
-      if (sigClase != "Horario libre" && sigClase != "  ") {
+      if (currentProfesor == "ninguno") {
+        clases.innerHTML = "Horario libre <br>";
+      }
+      if (sigClase != "  ") {
         siguiente.innerHTML =
           "<br> Siguiente clase: <br>" + sigClase + "<br>" + sigProfe;
       }
-      if (currenthoramin >= horaf12(horasMaterias[5])) {
-        siguiente.innerHTML = " ";
-      }
     } else if (currenthoramin >= horaf12(horasMaterias[6])) {
-      clases.innerHTML = " ";
-      restante.innerHTML = " ";
-      siguiente.innerHTML = " ";
-    } 
+      clases.innerHTML = "  ";
+      restante.innerHTML = "  ";
+      siguiente.innerHTML = "  ";
+    }
     if (
       currenthoramin >= horaf12(horasMaterias[0]) &&
       currenthoramin < horaf12(horasMaterias[1]) &&
